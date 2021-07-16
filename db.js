@@ -52,6 +52,18 @@ async function queryAllProducts() {
   return res.rows
 }
 
+async function queryAllClients() {
+  const text = 'select c.id c.name, c.username, c.identification from clients c'
+  const res = await pool.query(text)
+  return res.rows
+}
+
+async function queryAllProviders() {
+  const text = 'select p.id, p.name, p.email from providers p'
+  const res = await pool.query(text)
+  return res.rows
+}
+
 function disconnect () {
   pool.end().then(() => {
     console.log('Pool has ended')
@@ -65,5 +77,7 @@ module.exports = {
   querySalesByProvider,
   querySalesByProduct,
   querySalesDetail,
-  queryAllProducts
+  queryAllProducts,
+  queryAllClients,
+  queryAllProviders
 }
