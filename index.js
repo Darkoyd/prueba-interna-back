@@ -25,6 +25,12 @@ app.get('/product/:id', async (req, res) => {
     res.status(200).send(resultSet)
 })
 
+app.get('/product', async (req, res) => {
+    const resultSet = await DB.queryAllProducts()
+    console.log('Queried ' + resultSet.length + ' rows')
+    res.status(200).send(resultSet)
+})
+
 app.get('/provider/:id', async (req, res) => {
     const saleId = req.params.id
     const resultSet = await DB.querySalesByProvider(saleId)
